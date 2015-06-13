@@ -1,0 +1,33 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main(){
+	string name;
+	cout << "Create a file name: ";
+	cin >> name;
+
+	fstream text(name + ".txt", ios::out | ios::beg);
+	text << "Hello World.\n";
+
+	int characters = 0;
+
+	if (text.fail()){
+		cout << "File does not exist.\n";
+		text.close();
+	}
+
+	while (!text.eof()){
+		string temp;
+		text >> temp;
+
+		for (int i = 0; i < temp.size(); i++){
+
+			if (isalpha(temp.at(i)))
+				characters++;
+		}
+
+	}
+	cout << "Character: " << characters << endl;
+}
